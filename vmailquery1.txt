@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <?php
+$con=mysqli_connect("localhost","peter","paper","vmail");
+// Check connection
+if (mysqli_connect_errno()) {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+
+$result = mysqli_query($con,"SELECT * FROM alias");
+
+echo "<table border='1'>
+<tr>
+<th>address</th>
+<th>goto</th>
+<th>name</th>
+<th>moderators</th>
+<th>accessibility</th>
+<th>domain</th>
+<th>created</th>
+<th>modifier</th>
+<th>expired</th>
+<th>active</th>
+</tr>";
+
+while($row = mysqli_fetch_array($result)) {
+  echo "<tr>";
+  echo "<td>" . $row['address'] . "</td>";
+  echo "<td>" . $row['goto'] . "</td>";
+  echo "<td>" . $row['name'] . "</td>";
+  echo "<td>" . $row['moderators'] . "</td>";
+  echo "<td>" . $row['accessibility'] . "</td>";
+  echo "<td>" . $row['domain'] . "</td>";
+  echo "<td>" . $row['created'] . "</td>";
+  echo "<td>" . $row['modifier'] . "</td>";
+  echo "<td>" . $row['expired'] . "</td>";
+  echo "<td>" . $row['active'] . "</td>";
+  echo "</tr>";
+}
+
+echo "</table>";
+
+mysqli_close($con);
+?>
+    </body>
+</html>
